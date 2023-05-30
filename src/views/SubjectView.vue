@@ -9,27 +9,22 @@
         <hr class="rounded">
 
         <div class="m-1 input-group d-flex justify-content-between">
-          <h4 class="m-1 title-center text-center">Average Ø: {{ getAverage(subject.marks) }}</h4>
-
-          <!-- <div class="input-group-prepend">
-            <span class="input-group-text m-1" id="basic-addon1">Average</span>
-          </div>
-          <input readonly type="text" class="form-control m-1" :value="getAverage(subject.marks)"> -->
+          <h4 class="m-1 title-center text-center">Average Ø: {{ getAverage(subject.Grades) }}</h4>
         </div>
 
-        <Newmark @add="addMark(subject, $event)"></Newmark>
+        <NewGrade @add="addGrade(subject, $event)"></NewGrade>
 
         <hr class="rounded">
 
-        <ul class="list-group" v-for="mark in subject.marks">
+        <ul class="list-group" v-for="Grade in subject.Grades">
 
           <div class="input-group d-flex justify-content-between">
             <div class="col-9 m-1">
-              <input readonly type="text" class="form-control" :value="mark.mark">
+              <input readonly type="text" class="form-control" :value="Grade.Grade">
             </div>
 
             <div class="col-2 ml-4">
-              <button class="btn btn-danger m-1" type="button" @click="removeMark(subject, mark.id)">X</button>
+              <button class="btn btn-danger m-1" type="button" @click="removeGrade(subject, Grade.id)">X</button>
             </div>
           </div>
 
@@ -49,40 +44,26 @@
       placeholder="Add Subject:" />
     <button class="btn btn-primary m-1" type="button" @click="addSubject(subjects)">+</button>
   </div>
-
 </template>
 
 <script setup>
 // @ is an alias to /src
 import { ref } from 'vue'
-import Newmark from '../components/newmark'
+import NewGrade from '../components/newGrade'
 
 const newSubject = ref("");
 const subjects = ref([{
   id: 1,
   name: "M152",
-  marks: [
-    { id: 1, mark: 3 },
-    { id: 2, mark: 5 },
-    { id: 3, mark: 6 }
+  Grades: [
+    { id: 1, Grade: 3 },
+    { id: 2, Grade: 5 },
+    { id: 3, Grade: 6 }
   ]
-}, 
-{ id: 2, name: "M151", marks: [] },
-{ id: 3, name: "M306", marks: [] },
-{ id: 4, name: "NWS", marks: [] },
-{ id: 5, name: "SPK", marks: [] },
-{ id: 6, name: "M153", marks: [] },
-{ id: 7, name: "GES", marks: [] },
-{ id: 8, name: "SPO", marks: [] },
-{ id: 9, name: "WUR", marks: [] }]);
-
-// , { id: 2, name: "M151", marks: [] },
-//   { id: 3, name: "M306", marks: [] },
-//   { id: 4, name: "M152", marks: [] },
-//   { id: 5, name: "M152", marks: [] },
-//   { id: 6, name: "M152", marks: [] },
-//   { id: 7, name: "M152", marks: [] },
-//   { id: 8, name: "M152", marks: [] }
+},
+{ id: 2, name: "M151", Grades: [] },
+{ id: 3, name: "M152", Grades: [] },
+{ id: 4, name: "NWS", Grades: [] }]);
 
 function addSubject(subjectList) {
   var nextID = incrementNextID(subjectList);
@@ -90,27 +71,27 @@ function addSubject(subjectList) {
   subjects.value.push({
     id: nextID,
     name: newSubject.value,
-    marks: []
+    Grades: []
   });
 
   newSubject.value = "";
 }
 
-function addMark(subject, grade) {
-  if (!isValidMark(grade)) {
-    alert("Please enter a valid mark between 1 and 6.")
+function addGrade(subject, grade) {
+  if (!isValidGrade(grade)) {
+    alert("Please enter a valid Grade between 1 and 6.")
     return;
   }
-  subject.marks.push({ id: incrementNextID(subject.marks), mark: grade })
+  subject.Grades.push({ id: incrementNextID(subject.Grades), Grade: grade })
 
   grade = "";
 }
 
-function removeMark(subject, markID) {
-  var index = subject.marks.findIndex(function (x) {
-    return x.id === markID;
+function removeGrade(subject, GradeID) {
+  var index = subject.Grades.findIndex(function (x) {
+    return x.id === GradeID;
   })
-  if (index !== -1) { subject.marks.splice(index, 1); }
+  if (index !== -1) { subject.Grades.splice(index, 1); }
 }
 
 function incrementNextID(arr) {
@@ -128,14 +109,14 @@ function incrementNextID(arr) {
 function getAverage(arr) {
   if (arr.length <= 0) { return "-"; }
 
-  let markTotal = 0;
+  let GradeTotal = 0;
   arr.forEach(x => {
-    markTotal += Number(x.mark);
+    GradeTotal += Number(x.Grade);
   });
 
-  console.log(markTotal);
-  markTotal = markTotal / arr.length
-  return Math.round((markTotal + Number.EPSILON) * 100) / 100
+  console.log(GradeTotal);
+  GradeTotal = GradeTotal / arr.length
+  return Math.round((GradeTotal + Number.EPSILON) * 100) / 100
 
 }
 
@@ -144,7 +125,7 @@ function totalAverage(arr) {
   let empty = 0;
 
   arr.forEach(x => {
-    if (x.marks.length > 0) { total += getAverage(x.marks) } else { empty += 1 }
+    if (x.Grades.length > 0) { total += getAverage(x.Grades) } else { empty += 1 }
   });
   if (total <= 0) { return "-" }
 
@@ -153,7 +134,7 @@ function totalAverage(arr) {
   return Math.round(total * 2) / 2;
 }
 
-function isValidMark(str) {
+function isValidGrade(str) {
   if (typeof str !== 'string') { return false; }
 
   let num = Number(str);
