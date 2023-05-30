@@ -37,7 +37,6 @@
 
     <div class="m-1 input-group d-flex justify-content-between">
       <h4 class="m-1 title-center text-center">Average Ø: {{ totalAverage(subjects) }}</h4>
-      <!-- <input readonly type="text" class="form-control m-1" :value="totalAverage(subjects)"> -->
     </div>
 
     <input type="text" class="form-control m-1" @keyup.enter="addSubject(subjects)" v-model="newSubject"
