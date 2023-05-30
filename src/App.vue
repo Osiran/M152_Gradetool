@@ -1,5 +1,5 @@
 <template>
-  <h1 class="m-3 title">Grade-Management-Tool</h1>
+  <h1 class="m-3 title">Gradeing Tool</h1>
   <router-view />
 </template>
 
@@ -26,7 +26,7 @@ nav {
 }
 
 body {
-  background: linear-gradient(324deg, #0e4e3e, #8ee1cb, #5fa2e3, #2d62b9, #6f53e1, #e879e4);
+  background: linear-gradient(324deg, #4e2e0e, #465668, #5fa2e3, #b02db9, #53e1b4, #e879e4);
   background-size: 1200% 1200%;
 
   -webkit-animation: base-background 120s ease infinite;
@@ -76,19 +76,21 @@ body {
   }
 }
 
-.title{
+.title {
   font-weight: bolder;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
-.main-body{
+.main-body {
   margin-bottom: 5%;
 }
 
 .subject-body {
   margin-left: auto;
   margin-right: auto;
+  background: rgb(165, 239, 246);
   width: 95%;
+  flex: auto;
 }
 
 .subject-title {
@@ -107,10 +109,8 @@ body {
   width: 60%;
   margin-left: auto;
   margin-right: auto;
-  background: white;
-  border-radius: 25px;
+  background: rgb(165, 239, 246);
   padding: 10px;
-  // display: block;
 }
 
 .title-center {
