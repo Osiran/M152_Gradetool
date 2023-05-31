@@ -1,4 +1,4 @@
-# notenverwaltungstool
+# Gradetool
 
 ## Project setup
 ```
