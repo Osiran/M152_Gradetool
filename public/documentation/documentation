@@ -1,2 +1,13 @@
 Dokumentation:
 
+Diese Applikation ist dazu da Noten in verschiedenen Fächern zu Notieren und direkt den Durchschnitt der Eizelnen Modulen und die Gesamtnote zu Notieren. Hierfür kann man auf dem unteren Balken Module einfügen. Diese können dann mit Noten versehen werden. Jede dieser Funktionen berrechnet automatisch denn Durchschnitt dieses Moduls.
+
+Zuerst wurden variabeln erstellt:
+subject ist der name der Einzelnen Module, diese besitzen einen Namen, eine Id und eine Listevon noten.
+Mit diesem wird dann weitergearbeited. add und removeGrade sind typische methoden mit welchen die grades aus den listen entfernt und hinzugefügt werden können. getAvrage und totalAvrage sind dafür verantwortlich das ich zugang zu den verschiedenen Durchschnitten haben werden. Dammit dies richtigt erstellt werden kann habe ich mit isValidGrade eine Funktion die checkt das nur legale Noten aufgerufen werden.
+
+Diese werden nun mit Html code ausgelegt, wenn ein Modul unten eingegeben wird und Enter oder das + Symbol ageklickt wird, wird addSubject aufgerufen. Wenn das + in den Modulen angeklickt wird wird statessen addGrade aufgerufen oder removeGrade wenn auf den X button geklickt wird. Letztens werden nun die Avrages bei jeder änderung aktualisiert.
+
+Im App.vue werden nun die Grafischen aspekte als scss definiert. Ich verwendete linear-gradiant und animation um einen konstant änderenden Hintergrund habe. Die restlichen sind standart einstellungen um die einzelnen Objekte gut ausehen zu lassen.
+
+Ich habe in diesem Projekt realisiert das, obwohl es viele codesprachen, Frameworks und tools giebt, dass diese alle im endeffekt ähnlich, bis gleich operiersen. Einige dinge sind komplizierter in einigen als anderen aber im grossen und ganzen kann man sich relative schnell einarbeiten wenn man sich an die basics errinert.
